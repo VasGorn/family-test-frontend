@@ -1,0 +1,51 @@
+<form class="form" [formGroup]="form" (ngSubmit)="savePerson()">
+  <mat-grid-list
+    [cols]="breakpointColumn"
+    rowHeight="80px"
+    (window:resize)="onResize($event)"
+  >
+    <mat-grid-tile rowspam="1">
+      <mat-form-field appearance="outline" class="form__input">
+        <mat-label>Enter the name of person</mat-label>
+        <input matInput placeholder="Name" type="text" formControlName="name" />
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile rowspam="1">
+      <mat-form-field appearance="outline" class="form__input">
+        <mat-label>Birthday</mat-label>
+        <input matInput [matDatepicker]="birthday" formControlName="birthday" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="birthday"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #birthday></mat-datepicker>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile rowspam="1">
+      <mat-label>Gender</mat-label>
+      <mat-radio-group formControlName="gender" layout="row">
+        <mat-radio-button value="FEMALE" style="width: 45%; margin: 10px">
+          Female
+        </mat-radio-button>
+        <mat-radio-button value="MALE" style="width: 45%; margin: 10px">
+          Male
+        </mat-radio-button>
+      </mat-radio-group>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div class="form-actions">
+    <button mat-raised-button color="primary" type="submit">Create</button>
+    <button
+      style="margin-left: 10px"
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="updateBtnClick()"
+    >
+      Update
+    </button>
+  </div>
+</form>

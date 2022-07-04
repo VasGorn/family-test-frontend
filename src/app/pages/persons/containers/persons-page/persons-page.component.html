@@ -1,0 +1,72 @@
+<app-layout>
+  <mat-toolbar class="page-header" role="heading">
+    <h1>Persons</h1>
+  </mat-toolbar>
+
+  <mat-card-content class="typography-content">
+    <div class="typography-content__wrapper">
+      <mat-card class="typography-content__item-wrapper">
+        <mat-card-title>
+          <p>Create new person</p>
+        </mat-card-title>
+        <div class="typography-content__headings">
+          <app-person-form
+            [person]="selectedPerson"
+            (savePersonEvent)="savePerson($event)"
+            (updatePersonEvent)="updatePerson($event)"
+          ></app-person-form>
+        </div>
+      </mat-card>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content class="typography-content">
+    <div class="typography-content__wrapper">
+      <mat-card class="typography-content__item-wrapper">
+        <mat-card-title>
+          <p>All persons</p>
+        </mat-card-title>
+        <div class="typography-content__headings">
+          <app-person-table
+            [persons]="persons"
+            (selectPersonEvent)="selectPerson($event)"
+            (deletePersonEvent)="deletePerson($event)"
+            (filterPersonsByAgeEvent)="filterPersonsByAge($event)"
+          ></app-person-table>
+        </div>
+      </mat-card>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content class="typography-content">
+    <div class="typography-content__wrapper">
+      <mat-card class="typography-content__item-wrapper">
+        <mat-card-title>
+          <p>Parents</p>
+        </mat-card-title>
+        <div class="typography-content__headings">
+          <app-person-parents
+            [parents]="parentsOfSelectedPerson"
+            [persons]="persons"
+            (addPersonAsParentEvent)="addPersonAsParent($event)"
+          ></app-person-parents>
+        </div>
+      </mat-card>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content class="typography-content">
+    <div class="typography-content__wrapper">
+      <mat-card class="typography-content__item-wrapper">
+        <mat-card-title>
+          <p>Children</p>
+        </mat-card-title>
+        <div class="typography-content__headings">
+          <app-person-children
+            [children]="childrenOfSelectedPerson"
+          ></app-person-children>
+        </div>
+      </mat-card>
+    </div>
+  </mat-card-content>
+</app-layout>
